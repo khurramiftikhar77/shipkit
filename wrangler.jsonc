@@ -1,0 +1,24 @@
+{
+  // ShipKit: free browser-based tools for product and project managers.
+  // src/worker.js adds Google AdSense to the pages and redirects workers.dev to the real domain.
+  "name": "shipkit",
+  "main": "src/worker.js",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS",
+    // HTML pages go through the Worker so it can add the AdSense tag; /ads.txt is generated.
+    "run_worker_first": [
+      "/", "/index.html", "/rice-calculator", "/sprint-capacity-calculator", "/roadmap-builder",
+      "/meeting-cost-calculator", "/about", "/privacy", "/terms", "/contact", "/impressum", "/ads.txt"
+    ],
+    // Unknown URLs get 404.html with a real 404 status.
+    "not_found_handling": "404-page"
+  },
+  // The AdSense publisher ID is public (it appears in every page), so it lives here.
+  "vars": {
+    "ADSENSE_CLIENT": "ca-pub-3276058118984177"
+  },
+  // Keep ad unit IDs (ADSENSE_SLOT_*) added in the Cloudflare dashboard on each deploy.
+  "keep_vars": true
+}

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Now Next Later Roadmap Builder: Free Roadmap Template | ShipKit</title>
+  <meta name="description" content="Build a Now / Next / Later product roadmap in your browser and export it as a PNG image for slides and stakeholder updates. Free, no signup.">
+  <link rel="canonical" href="https://shipkit.khurramiftikhar.com/roadmap-builder">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ShipKit">
+  <meta property="og:title" content="Now Next Later Roadmap Builder: Free Roadmap Template | ShipKit">
+  <meta property="og:description" content="Build a Now / Next / Later product roadmap in your browser and export it as a PNG image for slides and stakeholder updates. Free, no signup.">
+  <meta property="og:url" content="https://shipkit.khurramiftikhar.com/roadmap-builder">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#3b5bdb">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"ShipKit Roadmap Builder","applicationCategory":"BusinessApplication","operatingSystem":"Any (web browser)","url":"https://shipkit.khurramiftikhar.com/roadmap-builder","description":"Build a Now / Next / Later product roadmap in your browser and export it as a PNG image for slides and stakeholder updates. Free, no signup.","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Khurram Iftikhar","url":"https://khurramiftikhar.com"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why no dates on the roadmap?","acceptedAnswer":{"@type":"Answer","text":"Dates turn a roadmap into a promise. Time horizons communicate priority and direction while leaving room to learn and adjust."}},{"@type":"Question","name":"How far ahead should Later go?","acceptedAnswer":{"@type":"Answer","text":"Most teams treat Now as the current quarter, Next as the following one, and Later as anything beyond that."}},{"@type":"Question","name":"Can I edit the roadmap later?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is saved in your browser automatically, so it is still there when you come back on the same device."}},{"@type":"Question","name":"Is the PNG export free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The image is drawn in your browser and downloaded directly. There is no watermark beyond a small credit line."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ShipKit","item":"https://shipkit.khurramiftikhar.com/"},{"@type":"ListItem","position":2,"name":"Now / Next / Later roadmap","item":"https://shipkit.khurramiftikhar.com/roadmap-builder"}]}</script>
+</head>
+<body>
+  <header class="topbar">
+    <p class="brand"><a href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="currentColor" style="color:var(--accent)"/><path d="M16 6l7 12h-4.5v8h-5v-8H9z" fill="#fff"/></svg><span class="wordmark">Ship<span>Kit</span></span></a></p>
+    <nav class="top-links" aria-label="Main">
+      <a class="hide-sm" href="/rice-calculator">RICE</a>
+      <a class="hide-sm" href="/sprint-capacity-calculator">Capacity</a>
+      <a class="hide-sm" href="/roadmap-builder">Roadmap</a>
+      <a class="btn btn-primary" href="/#tools">All tools</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">ShipKit</a> / Now / Next / Later roadmap</nav>
+    <div class="tool-head">
+      <h1>Now / Next / Later roadmap builder</h1>
+      <p class="lead">Sketch an outcome-focused roadmap without dates, color it by theme, and download a clean image for your next update. Your roadmap is saved in this browser.</p>
+    </div>
+    <section class="card" aria-label="Roadmap">
+      <div class="btn-row" style="justify-content:space-between;align-items:center;margin-top:0">
+        <div class="roadmap-title" id="roadmap-title" contenteditable="true" role="textbox" aria-label="Roadmap title" spellcheck="true">Product roadmap</div>
+        <div class="btn-row" style="margin:0">
+          <button type="button" class="btn btn-primary" id="export-png">Download PNG</button>
+          <button type="button" class="btn" id="reset">Load sample</button>
+          <button type="button" class="btn btn-ghost" id="clear">Clear</button>
+        </div>
+      </div>
+      <p class="muted small" style="margin:0">Click any title to edit it. Use the arrows to move items between columns.</p>
+      <div class="board" id="board"></div>
+    </section>
+    <div class="ad-slot" data-ad="tool" hidden></div>
+
+    <article class="prose">
+      <h2>What is a Now / Next / Later roadmap?</h2>
+      <p>A Now / Next / Later roadmap groups work by time horizon instead of exact dates. It was popularised by Janna Bastow of ProdPad as a way to show direction without promising delivery dates that are likely to change.</p>
+      <ul>
+        <li><strong>Now:</strong> what the team is working on or starting this cycle. High confidence and well defined.</li>
+        <li><strong>Next:</strong> what comes after, once Now is done. Reasonably clear, still open to change.</li>
+        <li><strong>Later:</strong> bets and problems worth solving that are not planned yet. Low detail on purpose.</li>
+      </ul>
+      <h2>Why use themes</h2>
+      <p>Coloring items by theme, such as growth, retention or platform, shows stakeholders at a glance where the team is investing. If one color dominates Now, that is a strategy conversation worth having.</p>
+      <h2>How to use this roadmap builder</h2>
+      <ol>
+        <li>Rename the roadmap by clicking its title.</li>
+        <li>Add items to each column. Write outcomes ("Cut onboarding time in half") rather than features where you can.</li>
+        <li>Pick a theme for each item and reorder with the arrows.</li>
+        <li>Click <strong>Download PNG</strong> and drop the image into your slides, Confluence page or email.</li>
+      </ol>
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        <details><summary>Why no dates on the roadmap?</summary><p>Dates turn a roadmap into a promise. Time horizons communicate priority and direction while leaving room to learn and adjust.</p></details>
+        <details><summary>How far ahead should Later go?</summary><p>Most teams treat Now as the current quarter, Next as the following one, and Later as anything beyond that.</p></details>
+        <details><summary>Can I edit the roadmap later?</summary><p>Yes. It is saved in your browser automatically, so it is still there when you come back on the same device.</p></details>
+        <details><summary>Is the PNG export free?</summary><p>Yes. The image is drawn in your browser and downloaded directly. There is no watermark beyond a small credit line.</p></details>
+      </div>
+      <h2>More free PM tools</h2>
+      <ul>
+        <li><a href="/rice-calculator">RICE calculator</a>: Rank features by Reach, Impact, Confidence and Effort. Switch to ICE scoring in one click.</li>
+        <li><a href="/sprint-capacity-calculator">Sprint capacity calculator</a>: Work out real team capacity after days off and focus time, and forecast story points.</li>
+        <li><a href="/meeting-cost-calculator">Meeting cost calculator</a>: See what a meeting really costs, with a live timer that ticks up while you talk.</li>
+      </ul>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="ad-slot" data-ad="footer" hidden></div>
+    <nav class="footer-links" aria-label="Tools">
+      <a href="/rice-calculator">RICE calculator</a>
+      <a href="/sprint-capacity-calculator">Sprint capacity calculator</a>
+      <a href="/roadmap-builder">Now / Next / Later roadmap</a>
+      <a href="/meeting-cost-calculator">Meeting cost calculator</a>
+    </nav>
+    <nav class="footer-links" aria-label="More free tools">
+      <span class="muted small">More free tools:</span>
+      <a href="https://mememaker.khurramiftikhar.com">Meme Maker</a>
+      <a href="https://dadops.khurramiftikhar.com">DadOps</a>
+    </nav>
+    <nav class="footer-links" aria-label="Site">
+      <a href="/about">About</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Use</a>
+      <a href="/contact">Contact</a>
+      <a href="/impressum">Impressum</a>
+    </nav>
+    <p class="muted small">&copy; <span id="year">2026</span> ShipKit by <a href="https://khurramiftikhar.com">Khurram Iftikhar</a>. Free tools, no signup.</p>
+  </footer>
+  <script src="/js/common.js"></script>
+  <script src="/js/roadmap.js"></script>
+</body>
+</html>

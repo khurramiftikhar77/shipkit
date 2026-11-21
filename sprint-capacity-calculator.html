@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sprint Capacity Calculator: Plan Team Capacity in Hours and Points | ShipKit</title>
+  <meta name="description" content="Free sprint capacity calculator for Scrum teams. Account for days off, part-time members and focus time, then forecast story points from past velocity. No signup.">
+  <link rel="canonical" href="https://shipkit.khurramiftikhar.com/sprint-capacity-calculator">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ShipKit">
+  <meta property="og:title" content="Sprint Capacity Calculator: Plan Team Capacity in Hours and Points | ShipKit">
+  <meta property="og:description" content="Free sprint capacity calculator for Scrum teams. Account for days off, part-time members and focus time, then forecast story points from past velocity. No signup.">
+  <meta property="og:url" content="https://shipkit.khurramiftikhar.com/sprint-capacity-calculator">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#3b5bdb">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"ShipKit Sprint Capacity Calculator","applicationCategory":"BusinessApplication","operatingSystem":"Any (web browser)","url":"https://shipkit.khurramiftikhar.com/sprint-capacity-calculator","description":"Free sprint capacity calculator for Scrum teams. Account for days off, part-time members and focus time, then forecast story points from past velocity. No signup.","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Khurram Iftikhar","url":"https://khurramiftikhar.com"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What focus factor should I use?","acceptedAnswer":{"@type":"Answer","text":"Most teams land between 60% and 80%. New teams, teams with heavy support duty, or teams with many meetings should start lower."}},{"@type":"Question","name":"Should I plan in hours or story points?","acceptedAnswer":{"@type":"Answer","text":"Many teams forecast in story points using past velocity and use hours only as a sanity check. This calculator shows both so you can pick."}},{"@type":"Question","name":"How do I count someone who is part-time?","acceptedAnswer":{"@type":"Answer","text":"Set their availability percentage. Someone working 3 days a week is about 60%."}},{"@type":"Question","name":"Does this replace velocity?","acceptedAnswer":{"@type":"Answer","text":"No. It adjusts your past velocity for the capacity you have this sprint, which makes the forecast more realistic when people are away."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ShipKit","item":"https://shipkit.khurramiftikhar.com/"},{"@type":"ListItem","position":2,"name":"Sprint capacity calculator","item":"https://shipkit.khurramiftikhar.com/sprint-capacity-calculator"}]}</script>
+</head>
+<body>
+  <header class="topbar">
+    <p class="brand"><a href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="currentColor" style="color:var(--accent)"/><path d="M16 6l7 12h-4.5v8h-5v-8H9z" fill="#fff"/></svg><span class="wordmark">Ship<span>Kit</span></span></a></p>
+    <nav class="top-links" aria-label="Main">
+      <a class="hide-sm" href="/rice-calculator">RICE</a>
+      <a class="hide-sm" href="/sprint-capacity-calculator">Capacity</a>
+      <a class="hide-sm" href="/roadmap-builder">Roadmap</a>
+      <a class="btn btn-primary" href="/#tools">All tools</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">ShipKit</a> / Sprint capacity calculator</nav>
+    <div class="tool-head">
+      <h1>Sprint capacity calculator</h1>
+      <p class="lead">Find out how much work your team can really take on this sprint, after holidays, part-time schedules and meetings. Your team is saved in this browser.</p>
+    </div>
+    <section class="card" aria-label="Calculator">
+      <div class="field-row" id="cap-settings">
+        <label class="field">Working days in sprint<input type="number" min="1" step="1" data-s="sprintDays"></label>
+        <label class="field">Hours per day<input type="number" min="1" max="24" step="0.5" data-s="hoursPerDay"></label>
+        <label class="field">Focus factor (%) <small>Time left after meetings and interruptions</small><input type="number" min="0" max="100" step="5" data-s="focus"></label>
+        <label class="field">Past velocity (points) <small>Optional: average of recent sprints</small><input type="number" min="0" step="1" data-s="pastVelocity"></label>
+        <label class="field">Past person-days <small>Optional: capacity in those sprints</small><input type="number" min="0" step="0.5" data-s="pastPersonDays"></label>
+      </div>
+      <div class="table-wrap">
+        <table class="grid">
+          <thead><tr><th>Team member</th><th>Availability %</th><th>Days off</th><th>Person-days</th><th>Focus hours</th><th><span class="sr-only">Remove</span></th></tr></thead>
+          <tbody id="team-body"></tbody>
+        </table>
+      </div>
+      <div class="btn-row">
+        <button type="button" class="btn btn-primary" id="add-member">+ Add team member</button>
+        <button type="button" class="btn" id="copy-summary">Copy summary</button>
+        <button type="button" class="btn" id="reset">Load sample</button>
+      </div>
+      <div class="stats" aria-live="polite">
+        <div class="stat"><b id="out-days">0</b><span>Person-days available</span></div>
+        <div class="stat"><b id="out-hours">0</b><span>Total working hours</span></div>
+        <div class="stat"><b id="out-focus">0</b><span>Focus hours for sprint work</span></div>
+        <div class="stat hero-stat"><b id="out-points">n/a</b><span id="out-points-note">Forecast story points this sprint</span></div>
+      </div>
+    </section>
+    <div class="ad-slot" data-ad="tool" hidden></div>
+
+    <article class="prose">
+      <h2>What is sprint capacity?</h2>
+      <p>Sprint capacity is the amount of time your team can actually spend on sprint work. It is always lower than headcount times days, because people take time off, work part-time, and spend part of every day in meetings, reviews and support.</p>
+      <h2>How the calculation works</h2>
+      <p><span class="formula">Person-days = (Sprint days − Days off) × Availability %</span></p>
+      <p><span class="formula">Focus hours = Person-days × Hours per day × Focus factor</span></p>
+      <p>If you add past velocity, ShipKit scales it to this sprint's capacity:</p>
+      <p><span class="formula">Forecast points = Past velocity × (Person-days now ÷ Past person-days)</span></p>
+      <p>Example: your team averaged 40 points in sprints with 45 person-days. This sprint has 39 person-days, so the forecast is 40 × 39 ÷ 45 ≈ <strong>35 points</strong>.</p>
+      <h2>How to use it in sprint planning</h2>
+      <ol>
+        <li>Set the sprint length and working hours. Leave out public holidays from the working days.</li>
+        <li>Add each team member with their availability (for example 50% for someone split across two teams) and planned days off.</li>
+        <li>Pick a focus factor. 60% to 80% is typical. Start at 70% and adjust after a few sprints.</li>
+        <li>Commit to slightly less than the forecast to leave room for bugs and surprises.</li>
+      </ol>
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        <details><summary>What focus factor should I use?</summary><p>Most teams land between 60% and 80%. New teams, teams with heavy support duty, or teams with many meetings should start lower.</p></details>
+        <details><summary>Should I plan in hours or story points?</summary><p>Many teams forecast in story points using past velocity and use hours only as a sanity check. This calculator shows both so you can pick.</p></details>
+        <details><summary>How do I count someone who is part-time?</summary><p>Set their availability percentage. Someone working 3 days a week is about 60%.</p></details>
+        <details><summary>Does this replace velocity?</summary><p>No. It adjusts your past velocity for the capacity you have this sprint, which makes the forecast more realistic when people are away.</p></details>
+      </div>
+      <h2>More free PM tools</h2>
+      <ul>
+        <li><a href="/rice-calculator">RICE calculator</a>: Rank features by Reach, Impact, Confidence and Effort. Switch to ICE scoring in one click.</li>
+        <li><a href="/roadmap-builder">Now / Next / Later roadmap</a>: Build a clean outcome roadmap and export it as an image for your next stakeholder update.</li>
+        <li><a href="/meeting-cost-calculator">Meeting cost calculator</a>: See what a meeting really costs, with a live timer that ticks up while you talk.</li>
+      </ul>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="ad-slot" data-ad="footer" hidden></div>
+    <nav class="footer-links" aria-label="Tools">
+      <a href="/rice-calculator">RICE calculator</a>
+      <a href="/sprint-capacity-calculator">Sprint capacity calculator</a>
+      <a href="/roadmap-builder">Now / Next / Later roadmap</a>
+      <a href="/meeting-cost-calculator">Meeting cost calculator</a>
+    </nav>
+    <nav class="footer-links" aria-label="More free tools">
+      <span class="muted small">More free tools:</span>
+      <a href="https://mememaker.khurramiftikhar.com">Meme Maker</a>
+      <a href="https://dadops.khurramiftikhar.com">DadOps</a>
+    </nav>
+    <nav class="footer-links" aria-label="Site">
+      <a href="/about">About</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Use</a>
+      <a href="/contact">Contact</a>
+      <a href="/impressum">Impressum</a>
+    </nav>
+    <p class="muted small">&copy; <span id="year">2026</span> ShipKit by <a href="https://khurramiftikhar.com">Khurram Iftikhar</a>. Free tools, no signup.</p>
+  </footer>
+  <script src="/js/common.js"></script>
+  <script src="/js/capacity.js"></script>
+</body>
+</html>

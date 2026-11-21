@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | ShipKit</title>
+  <meta name="description" content="Send feedback, report a bug or suggest a new tool for ShipKit.">
+  <link rel="canonical" href="https://shipkit.khurramiftikhar.com/contact">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ShipKit">
+  <meta property="og:title" content="Contact | ShipKit">
+  <meta property="og:description" content="Send feedback, report a bug or suggest a new tool for ShipKit.">
+  <meta property="og:url" content="https://shipkit.khurramiftikhar.com/contact">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#3b5bdb">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <p class="brand"><a href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="currentColor" style="color:var(--accent)"/><path d="M16 6l7 12h-4.5v8h-5v-8H9z" fill="#fff"/></svg><span class="wordmark">Ship<span>Kit</span></span></a></p>
+    <nav class="top-links" aria-label="Main">
+      <a class="hide-sm" href="/rice-calculator">RICE</a>
+      <a class="hide-sm" href="/sprint-capacity-calculator">Capacity</a>
+      <a class="hide-sm" href="/roadmap-builder">Roadmap</a>
+      <a class="btn btn-primary" href="/#tools">All tools</a>
+    </nav>
+  </header>
+
+  <main class="page narrow">
+    <h1>Contact</h1>
+    <p>Found a bug, want a new tool, or have an idea? Send a message below and it goes straight to our inbox. We usually reply within a few days.</p>
+
+    <form class="contact-form" id="contact-form" novalidate>
+      <div class="field-row">
+        <label class="field">
+          <span>Your name</span>
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label class="field">
+          <span>Your email</span>
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+      </div>
+      <label class="field">
+        <span>What is it about?</span>
+        <select name="topic">
+          <option>Bug report</option>
+          <option value="tool-idea">New tool idea</option>
+          <option>Feedback on a tool</option>
+          <option>Privacy question</option>
+          <option>Advertising or sponsorship</option>
+          <option>Just saying hi</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Message</span>
+        <textarea name="message" rows="6" required placeholder="What happened, or what would you like?"></textarea>
+      </label>
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button type="submit" class="btn btn-primary">Send message</button>
+      <p class="form-status" data-status aria-live="polite"></p>
+      <p class="muted small">Your message is only used to reply to you. No newsletter, no sharing. See the <a href="/privacy">Privacy Policy</a>.</p>
+    </form>
+
+    <p>Prefer email? Write to <a href="mailto:mememaker@khurramiftikhar.com">mememaker@khurramiftikhar.com</a>.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="ad-slot" data-ad="footer" hidden></div>
+    <nav class="footer-links" aria-label="Tools">
+      <a href="/rice-calculator">RICE calculator</a>
+      <a href="/sprint-capacity-calculator">Sprint capacity calculator</a>
+      <a href="/roadmap-builder">Now / Next / Later roadmap</a>
+      <a href="/meeting-cost-calculator">Meeting cost calculator</a>
+    </nav>
+    <nav class="footer-links" aria-label="More free tools">
+      <span class="muted small">More free tools:</span>
+      <a href="https://mememaker.khurramiftikhar.com">Meme Maker</a>
+      <a href="https://dadops.khurramiftikhar.com">DadOps</a>
+    </nav>
+    <nav class="footer-links" aria-label="Site">
+      <a href="/about">About</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Use</a>
+      <a href="/contact">Contact</a>
+      <a href="/impressum">Impressum</a>
+    </nav>
+    <p class="muted small">&copy; <span id="year">2026</span> ShipKit by <a href="https://khurramiftikhar.com">Khurram Iftikhar</a>. Free tools, no signup.</p>
+  </footer>
+  <script src="/js/common.js"></script>
+  <script src="/js/contact.js"></script>
+</body>
+</html>
