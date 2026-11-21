@@ -4,6 +4,8 @@
   "name": "shipkit",
   "main": "src/worker.js",
   "compatibility_date": "2025-09-01",
+  // Deploying attaches this subdomain to the Worker and creates its DNS record.
+  "routes": [{ "pattern": "shipkit.khurramiftikhar.com", "custom_domain": true }],
   "assets": {
     "directory": "./",
     "binding": "ASSETS",
